@@ -51,6 +51,18 @@ class App extends React.Component {
     }
   }
 
+  copyColor = (color) => {
+    const el = document.createElement('textarea');
+    el.value = color;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  }
+
   render() {
     let { imagePreviewUrl, dominant, palette } = this.state;
 
@@ -69,7 +81,7 @@ class App extends React.Component {
         <div className="dominant">
           <h3>Dominant Color</h3>
           <div className="swatch">
-            <div className="ball" style={{ backgroundColor: dominant }}></div>
+            <div className="ball" style={{ backgroundColor: dominant }} onClick={(e) => this.copyColor(dominant)}></div>
             <p>{dominant}</p>
           </div>
         </div>);
@@ -83,7 +95,7 @@ class App extends React.Component {
           <div className="swatches">
             {palette.map(color =>
               <div className="swatch" key={color}>
-                <div className="ball" style={{ backgroundColor: color }}></div>
+                <div className="ball" style={{ backgroundColor: color }} onClick={(e) => this.copyColor(color)}></div>
                 <p>{color}</p>
               </div>
             )}
