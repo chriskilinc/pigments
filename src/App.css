@@ -1,38 +1,82 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.playarea {
   display: flex;
+}
+
+.container {
+  padding: 0 4rem;
+}
+
+#file {
+  display: none;
+}
+.file-upload {
+  border: 4px solid #000;
+  font-family: psychedelic;
+  font-weight: 400;
+  font-size: 2.2rem;
+  border-radius: 12px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+.file-upload:hover, .file-upload:focus {
+  color: #fff;
+  background: black;
+}
+
+.file-upload:hover, .file-upload:focus svg {
+  fill: #fff;
+}
+
+/* UPLOAD */
+
+.upload {
+  flex: 1;
+  border-right: 4px solid #000;
+  text-align: right;
+}
+.upload .preview {
+  margin-top: 2rem;
+}
+.upload .preview img {
+  max-width: 100%;
+  max-height: 50vh;
+}
+
+/* SUMMERY */
+
+.summery {
+  flex: 1;
+  text-align: left;
+}
+
+.summery .palette {
+  max-width: 25vw; /* TODO: Remake this in a prettier way */
+}
+
+/* SWATCHES */
+
+.swatches {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.swatch {
+  display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  padding: 0.5rem;
+  /* flex: 1 1 33%; grow | shrink | basis */
+}
+
+.ball {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: #ddd;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: center;
+  margin-right: 2px;
 }

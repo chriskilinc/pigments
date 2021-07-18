@@ -1,13 +1,32 @@
+@font-face {
+  font-family: 'psychedelic';
+  src:  url(./fonts/psychedelic.otf)
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* TYPOGRAPHY */
+
+h1, h2, h3 {
+  font-family: 'psychedelic';
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  text-decoration: underline;
+}
+
+h3 {
+  font-size: 2.25rem;
 }
