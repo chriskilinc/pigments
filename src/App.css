@@ -14,28 +14,29 @@
   display: none;
 }
 .file-upload {
-  border: 4px solid #000;
+  border: 2px solid #cdd9e5;
   font-family: psychedelic;
+  font-family: 'Quicksand', sans-serif;
   font-weight: 400;
-  font-size: 2.2rem;
+  font-size: 32px;
   border-radius: 12px;
   padding: 5px 8px;
   cursor: pointer;
 }
 .file-upload:hover, .file-upload:focus {
   color: #fff;
-  background: black;
+  border-color: #fff;
 }
 
-.file-upload:hover, .file-upload:focus svg {
+/* .file-upload:hover, .file-upload:focus svg {
   fill: #fff;
-}
+} */
 
 /* UPLOAD */
 
 .upload {
   flex: 1;
-  border-right: 4px solid #000;
+  border-right: 2px solid #cdd9e5;
   text-align: right;
 }
 .upload .preview {
