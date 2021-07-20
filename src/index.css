@@ -4,6 +4,12 @@
 }
 
 @font-face {
+  font-family: 'psyche';
+  src:  local('psyche'), url('./fonts/pyshce.ttf') format('truetype');
+}
+
+
+@font-face {
   font-family: 'j-airplane';
   src:  local('j-airplane'), url('./fonts/J-airplane-swash-font.ttf') format('truetype')
 }
@@ -26,7 +32,7 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-family: "psychedelic";
+  font-family: "psyche";
   font-size: 4rem;
 }
 
