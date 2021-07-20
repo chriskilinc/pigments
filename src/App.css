@@ -1,9 +1,11 @@
 .app {
   text-align: center;
+  padding-bottom: 1rem;
 }
 
 .playarea {
   display: flex;
+  flex-direction: row;
 }
 
 .container {
@@ -13,7 +15,16 @@
 #file {
   display: none;
 }
+
+form {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .file-upload {
+  display: flex;
+  width: 17.5rem;
+  justify-content: space-around;
   border: 2px solid #cdd9e5;
   font-family: psychedelic;
   font-family: 'Quicksand', sans-serif;
@@ -27,10 +38,6 @@
   color: #fff;
   border-color: #fff;
 }
-
-/* .file-upload:hover, .file-upload:focus svg {
-  fill: #fff;
-} */
 
 /* UPLOAD */
 
@@ -83,8 +90,39 @@
 }
 
 .links {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
-  padding: 6px;
+  padding: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .playarea {
+    flex-direction: column;
+  }
+
+  .upload, .summery {
+    text-align: center;
+    border: none;
+  }
+
+  .summery .palette {
+    max-width: 50vw;
+    margin: auto;
+  }
+
+  .file-upload  {
+    width: 10rem;
+    font-size: 1.25rem;
+    border-radius: 6px;
+    align-items: center;
+  }
+
+  .file-upload img {
+    width: 16px;
+  }
+
+  form {
+    justify-content: center;
+  }
 }
