@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'psychedelic';
-  src:  url(./fonts/psychedelic.otf) format('opentype');
+  src:  local('psychedelic'), url(./fonts/psychedelic.otf) format('opentype');
 }
 
 @font-face {
   font-family: 'j-airplane';
-  src:  url(./fonts/J-airplane-swash-font.ttf)
+  src:  local('j-airplane'), url(./fonts/J-airplane-swash-font.ttf) format('truetype')
 }
 
 
