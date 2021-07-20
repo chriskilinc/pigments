@@ -145,6 +145,7 @@ class App extends React.Component {
         </div>
         {$infoText}
         {$wrongFileFormat}
+        <a href="https://github.com/chriskilinc/pigments" target="_blank" rel="noopener nofollow">Github</a>
       </div>
     );
   }

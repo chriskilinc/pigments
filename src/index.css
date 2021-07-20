@@ -45,3 +45,7 @@ h3 {
   font-family: 'Quicksand', sans-serif;
   font-size: 2rem;
 }
+
+a {
+  text-decoration: none;
+}
