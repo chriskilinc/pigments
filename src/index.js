@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './fonts/psychedelic.otf';
+import './fonts/J-airplane-swash-font.ttf';
 
 ReactDOM.render(
   <React.StrictMode>
