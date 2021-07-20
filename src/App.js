@@ -8,7 +8,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { file: '', imagePreviewUrl: '', dominantColor: '' };
+    this.state = { file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, wrongFileFormat: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.fileInput = React.createRef();
   }
@@ -24,7 +24,7 @@ class App extends React.Component {
     e.preventDefault();
     let file = e.target.files[0];
 
-    if (file) {
+    if (file && file.type.includes("image")) {
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
@@ -44,10 +44,14 @@ class App extends React.Component {
 
           this.setState({
             dominant: dominant,
-            palette: palette
+            palette: palette,
+            displayInfoText: true,
+            wrongFileFormat: false
           })
         });
       }
+    } else {
+      this.setState({ wrongFileFormat: true, file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, palette: null, dominant: null })
     }
   }
 
@@ -64,7 +68,7 @@ class App extends React.Component {
   }
 
   render() {
-    let { imagePreviewUrl, dominant, palette } = this.state;
+    let { imagePreviewUrl, dominant, palette, displayInfoText, wrongFileFormat } = this.state;
 
     let $iconImg = (<img width="28" src={iconImg} />);
 
@@ -104,6 +108,16 @@ class App extends React.Component {
       );
     }
 
+    let $infoText = null;
+    if (displayInfoText) {
+      $infoText = (<p>Press color swatch to copy hex code</p>);
+    }
+
+    let $wrongFileFormat = null;
+    if (wrongFileFormat) {
+      $wrongFileFormat = (<p>Wrong file format. That aint no image</p>);
+    }
+
     return (
       <div className="app pigments">
         <header><h1>pigments</h1></header>
@@ -129,6 +143,8 @@ class App extends React.Component {
             </div>
           </section>
         </div>
+        {$infoText}
+        {$wrongFileFormat}
       </div>
     );
   }
