@@ -22,17 +22,17 @@ body {
 /* TYPOGRAPHY */
 
 h1, h2, h3 {
-  font-family: "psychedelic";
   font-weight: 400;
 }
 
 h1 {
+  font-family: "psychedelic";
   font-size: 4rem;
 }
 
 h2 {
+  font-family: 'Quicksand', sans-serif;
   font-size: 2.5rem;
-  text-decoration: underline;
 }
 
 h3 {
