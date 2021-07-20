@@ -145,7 +145,11 @@ class App extends React.Component {
         </div>
         {$infoText}
         {$wrongFileFormat}
-        <a href="https://github.com/chriskilinc/pigments" target="_blank" rel="noopener nofollow">Github</a>
+        <div className="links">
+          <a href="https://www.chriskilinc.com" target="_blank" rel="dofollow">chriskilinc</a>
+          <span className="padding-around-s">•</span>
+          <a href="https://github.com/chriskilinc/pigments" target="_blank" rel="noopener nofollow">github</a>
+        </div>
       </div>
     );
   }

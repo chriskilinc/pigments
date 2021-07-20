@@ -25,6 +25,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.padding-around-s {
+  padding: 0 6px;
+}
+
 /* TYPOGRAPHY */
 
 h1, h2, h3 {
@@ -48,4 +52,5 @@ h3 {
 
 a {
   text-decoration: none;
+  color: #cdd9e5;
 }
