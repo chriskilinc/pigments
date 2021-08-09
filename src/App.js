@@ -41,6 +41,8 @@ class App extends React.Component {
             const dominant = `#${rgbHex(color[0], color[1], color[2])}`;
             const palette = colors.map((color) => `#${rgbHex(color[0], color[1], color[2])}`);
 
+            window.dataLayer.push({ "event": "upload_image" });
+
             this.setState({
               dominant: dominant,
               palette: palette,
@@ -65,6 +67,7 @@ class App extends React.Component {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
+    window.dataLayer.push({ "event": "copy_color" });
   }
 
   render() {
