@@ -57,7 +57,7 @@ class App extends React.Component {
     }
   }
 
-  copyColor = (color) => {
+  copyColor = (color, event) => {
     const el = document.createElement('textarea');
     el.value = color;
     el.setAttribute('readonly', '');
@@ -68,6 +68,10 @@ class App extends React.Component {
     document.execCommand('copy');
     document.body.removeChild(el);
     window.dataLayer.push({ "event": "copy_color" });
+    // CSS Animation
+    const copyClass = "copied";
+    event.target.classList.add(copyClass);
+    setTimeout(() => { event.target.classList.remove(copyClass) }, 800)
   }
 
   render() {
@@ -88,7 +92,7 @@ class App extends React.Component {
         <div className="dominant">
           <h3>Dominant Color</h3>
           <div className="swatch">
-            <div className="ball" style={{ backgroundColor: dominant }} onClick={(e) => this.copyColor(dominant)}></div>
+            <div className="ball" style={{ backgroundColor: dominant }} onClick={(e) => this.copyColor(dominant, e)}></div>
             <p>{dominant}</p>
           </div>
         </div>);
@@ -102,7 +106,7 @@ class App extends React.Component {
           <div className="swatches">
             {palette.map(color =>
               <div className="swatch" key={color}>
-                <div className="ball" style={{ backgroundColor: color }} onClick={(e) => this.copyColor(color)}></div>
+                <div className="ball" style={{ backgroundColor: color }} onClick={(e) => this.copyColor(color, e)}></div>
                 <p>{color}</p>
               </div>
             )}

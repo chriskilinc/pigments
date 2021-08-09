@@ -88,6 +88,11 @@ form {
   align-items: center;
   margin-right: 2px;
 }
+.ball.copied {
+  box-shadow: -2.5px -2.5px 20px 2.5px #cdd9e5, 2.5px 2.5px 20px 5px #df8039;
+  -webkit-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 
 .links {
   position: fixed;
