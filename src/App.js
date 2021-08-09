@@ -23,35 +23,35 @@ class App extends React.Component {
   onFileChange(e) {
     e.preventDefault();
     let file = e.target.files[0];
-
-    if (file && file.type.includes("image")) {
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        this.setState({
-          file: file,
-          imagePreviewUrl: reader.result
-        });
-
-        document.querySelector("#img-preview").addEventListener("load", (e) => {
-          const img = e.target;
-          const colorThief = new ColorThief();
-
-          const color = colorThief.getColor(img);
-          const colors = colorThief.getPalette(img);
-          const dominant = `#${rgbHex(color[0], color[1], color[2])}`;
-          const palette = colors.map((color) => `#${rgbHex(color[0], color[1], color[2])}`);
-
+    if (file) {
+      if (file.type.includes("image")) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
           this.setState({
-            dominant: dominant,
-            palette: palette,
-            displayInfoText: true,
-            wrongFileFormat: false
-          })
-        });
+            file: file,
+            imagePreviewUrl: reader.result
+          });
+
+          document.querySelector("#img-preview").addEventListener("load", (e) => {
+            const img = e.target;
+            const colorThief = new ColorThief();
+            const color = colorThief.getColor(img);
+            const colors = colorThief.getPalette(img);
+            const dominant = `#${rgbHex(color[0], color[1], color[2])}`;
+            const palette = colors.map((color) => `#${rgbHex(color[0], color[1], color[2])}`);
+
+            this.setState({
+              dominant: dominant,
+              palette: palette,
+              displayInfoText: true,
+              wrongFileFormat: false
+            })
+          });
+        }
+      } else {
+        this.setState({ wrongFileFormat: true, file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, palette: null, dominant: null })
       }
-    } else {
-      this.setState({ wrongFileFormat: true, file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, palette: null, dominant: null })
     }
   }
 
