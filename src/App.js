@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
+import iconImg from "./img/img2.svg";
 
 import ColorThief from 'colorthief'
 import rgbHex from "./utils/rgbHex";
-import iconImg from "./img/img2.svg";
+import rgbHsl from "./utils/rgbHsl";
+import changeHslLightness from "./utils/changeHslLightness";
 class App extends React.Component {
 
   constructor(props) {
