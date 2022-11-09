@@ -9,15 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, wrongFileFormat: false };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.fileInput = React.createRef();
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    if (this.state.file) {
-      console.log(this.state.file)
-    }
   }
 
   onFileChange(e) {
@@ -33,28 +25,30 @@ class App extends React.Component {
             imagePreviewUrl: reader.result
           });
 
-          document.querySelector("#img-preview").addEventListener("load", (e) => {
-            const img = e.target;
-            const colorThief = new ColorThief();
-            const color = colorThief.getColor(img);
-            const colors = colorThief.getPalette(img);
-            const dominant = `#${rgbHex(color[0], color[1], color[2])}`;
-            const palette = colors.map((color) => `#${rgbHex(color[0], color[1], color[2])}`);
-
-            window.dataLayer.push({ "event": "upload_image" });
-
-            this.setState({
-              dominant: dominant,
-              palette: palette,
-              displayInfoText: true,
-              wrongFileFormat: false
-            })
-          });
+          document.querySelector("#img-preview").addEventListener("load", this.onImgLoad);
         }
       } else {
         this.setState({ wrongFileFormat: true, file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, palette: null, dominant: null })
       }
     }
+  }
+
+  onImgLoad = (e) => {
+    const img = e.target;
+    const colorThief = new ColorThief();
+    const dominant = colorThief.getColor(img);
+    const dominantHex = `#${rgbHex(dominant[0], dominant[1], dominant[2])}`;
+    const palette = colorThief.getPalette(img).map((color) => `#${rgbHex(color[0], color[1], color[2])}`);
+
+    this.setState({
+      dominant: dominantHex,
+      palette: palette,
+      displayInfoText: true,
+      wrongFileFormat: false
+    });
+
+    window.dataLayer.push({ "event": "upload_image" });
+    img.removeEventListener("load", this.onImgLoad)
   }
 
   copyColor = (color, event) => {
@@ -132,7 +126,7 @@ class App extends React.Component {
           <section className="upload">
             <div className="container">
               <h2>Upload</h2>
-              <form onSubmit={this.handleSubmit}>
+              <form>
                 <input id="file" type="file" ref={this.fileInput} onChange={(e) => this.onFileChange(e)} />
                 <label className="file-upload" htmlFor="file">Choose Image {$iconImg}</label>
               </form>
