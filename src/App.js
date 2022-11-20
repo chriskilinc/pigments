@@ -83,7 +83,7 @@ class App extends React.Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img id="img-preview" src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText"><p>Choose an image to analyse color palette</p></div>);
+      $imagePreview = (<div className="previewText"><p>choose an image to analyse color palette</p></div>);
     }
 
     let $palette = null;
