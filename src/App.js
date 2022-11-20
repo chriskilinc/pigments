@@ -6,11 +6,13 @@ import ColorThief from 'colorthief'
 import rgbHex from "./utils/rgbHex";
 import rgbHsl from "./utils/rgbHsl";
 import changeHslLightness from "./utils/changeHslLightness";
+
+import { ColorInformation } from "./components/color-information/colorInformation"
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, wrongFileFormat: false };
+    this.state = { file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, wrongFileFormat: false, selectedColor: null };
     this.fileInput = React.createRef();
   }
 
@@ -46,7 +48,8 @@ class App extends React.Component {
       dominant: dominantHex,
       palette: palette,
       displayInfoText: true,
-      wrongFileFormat: false
+      wrongFileFormat: false,
+      selectedColor: dominantHex,
     });
 
     window.dataLayer.push({ "event": "upload_image" });
@@ -71,7 +74,7 @@ class App extends React.Component {
   }
 
   render() {
-    let { imagePreviewUrl, dominant, palette, displayInfoText, wrongFileFormat } = this.state;
+    let { imagePreviewUrl, dominant, palette, displayInfoText, wrongFileFormat, selectedColor } = this.state;
 
     let $iconImg = (<img width="28" src={iconImg} />);
 
@@ -79,35 +82,20 @@ class App extends React.Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img id="img-preview" src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText"><p></p></div>);
-    }
-
-    let $dominantColor = null;
-    if (dominant) {
-      $dominantColor = (
-        <div className="dominant">
-          <h3>Dominant Color</h3>
-          <div className="swatch">
-            <div className="ball" style={{ backgroundColor: dominant }} onClick={(e) => this.copyColor(dominant, e)}></div>
-            <p>{dominant}</p>
-          </div>
-        </div>);
+      $imagePreview = (<div className="previewText"><p>Choose an image to analyse color palette</p></div>);
     }
 
     let $palette = null;
-    if (palette && palette.length > 0) {
+    if (dominant && (palette && palette.length > 0)) {
       $palette = (
         <div className="palette">
-          <h3>Palette</h3>
           <div className="swatches">
+            <div className="swatch dominant" style={{ backgroundColor: dominant }} onClick={(e) => this.setState({ selectedColor: dominant })}></div>
             {palette.map(color =>
-              <div className="swatch" key={color}>
-                <div className="ball" style={{ backgroundColor: color }} onClick={(e) => this.copyColor(color, e)}></div>
-                <p>{color}</p>
-              </div>
+              <div className="swatch" key={color} style={{ backgroundColor: color }} onClick={(e) => this.setState({ selectedColor: color })}></div>
             )}
           </div>
-        </div>
+        </div >
       );
     }
 
@@ -127,10 +115,9 @@ class App extends React.Component {
         <div className="playarea">
           <section className="upload">
             <div className="container">
-              <h2>Upload</h2>
-              <form>
+              <form className="file-upload">
                 <input id="file" type="file" ref={this.fileInput} onChange={(e) => this.onFileChange(e)} />
-                <label className="file-upload" htmlFor="file">Choose Image {$iconImg}</label>
+                <label htmlFor="file">choose image {$iconImg}</label>
               </form>
               <div className="preview">
                 {$imagePreview}
@@ -140,13 +127,13 @@ class App extends React.Component {
 
           <section className="summery">
             <div className="container">
-              <h2>Summery</h2>
-              {$dominantColor}
               {$palette}
+              {selectedColor ? <ColorInformation color={this.state.selectedColor} /> : null}
             </div>
           </section>
         </div>
-        {$infoText}
+
+        {/* {$infoText} */}
         {$wrongFileFormat}
         <div className="links">
           <a href="https://www.chriskilinc.com" target="_blank" rel="dofollow">chriskilinc</a>

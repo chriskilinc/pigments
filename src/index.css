@@ -16,8 +16,8 @@
 
 
 body {
-  background-color: #22272e;
-  color: #cdd9e5;
+  background-color: var(--background-color);
+  color: var(--textColor);
   margin: 0;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
