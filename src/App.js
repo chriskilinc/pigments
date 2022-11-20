@@ -1,8 +1,9 @@
 import React from 'react';
+import ColorThief from 'colorthief'
+
 import './App.css';
 import iconImg from "./img/img2.svg";
 
-import ColorThief from 'colorthief'
 import rgbHex from "./utils/rgbHex";
 import rgbHsl from "./utils/rgbHsl";
 import changeHslLightness from "./utils/changeHslLightness";
