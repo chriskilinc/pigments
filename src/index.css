@@ -52,5 +52,5 @@ h3 {
 
 a {
   text-decoration: none;
-  color: #cdd9e5;
+  color: var(--textColor);
 }
