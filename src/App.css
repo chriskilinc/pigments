@@ -45,7 +45,7 @@ form {
   font-size: 1rem;
   justify-content: space-around;
   border: 6px solid var(--colorPrimary);
-  font-family: 'Quicksand', sans-serif;
+  /* font-family: 'Quicksand', sans-serif; */
   font-weight: 400;
   border-radius: 2px;
   padding: 5px 8px;
