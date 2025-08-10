@@ -5,8 +5,6 @@ import './App.css';
 import iconImg from "./img/img2.svg";
 
 import rgbHex from "./utils/rgbHex";
-import rgbHsl from "./utils/rgbHsl";
-import changeHslLightness from "./utils/changeHslLightness";
 
 import { ColorInformation } from "./components/color-information/colorInformation"
 class App extends React.Component {
@@ -29,8 +27,6 @@ class App extends React.Component {
             file: file,
             imagePreviewUrl: reader.result
           });
-
-          document.querySelector("#img-preview").addEventListener("load", this.onImgLoad);
         }
       } else {
         this.setState({ wrongFileFormat: true, file: '', imagePreviewUrl: '', dominantColor: '', displayInfoText: false, palette: null, dominant: null })
@@ -65,23 +61,40 @@ class App extends React.Component {
     el.style.left = '-9999px';
     document.body.appendChild(el);
     el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    window.dataLayer.push({ "event": "copy_color" });
-    // CSS Animation
-    const copyClass = "copied";
-    event.target.classList.add(copyClass);
-    setTimeout(() => { event.target.classList.remove(copyClass) }, 800)
+    // Use Clipboard API instead of deprecated execCommand
+    navigator.clipboard.writeText(color).then(() => {
+      document.body.removeChild(el);
+      window.dataLayer.push({ "event": "copy_color" });
+      // CSS Animation
+      const copyClass = "copied";
+      event.target.classList.add(copyClass);
+      setTimeout(() => { event.target.classList.remove(copyClass) }, 800)
+    }).catch(() => {
+      // Fallback for browsers that do not support Clipboard API
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      window.dataLayer.push({ "event": "copy_color" });
+      const copyClass = "copied";
+      event.target.classList.add(copyClass);
+      setTimeout(() => { event.target.classList.remove(copyClass) }, 800)
+    });
   }
 
   render() {
     let { imagePreviewUrl, dominant, palette, displayInfoText, wrongFileFormat, selectedColor } = this.state;
 
-    let $iconImg = (<img width="28" src={iconImg} />);
+    let $iconImg = (<img width="28" src={iconImg} alt='icon' />);
 
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img id="img-preview" src={imagePreviewUrl} />);
+      $imagePreview = (
+        <img
+          id="img-preview"
+          src={imagePreviewUrl}
+          alt='image preview'
+          onLoad={this.onImgLoad}
+        />
+      );
     } else {
       $imagePreview = (<div className="previewText"><p>choose an image to analyse color palette</p></div>);
     }

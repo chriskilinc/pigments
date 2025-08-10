@@ -1,10 +1,9 @@
-import React from "react";
-import colorNameList from 'color-name-list';
+import { colornames } from 'color-name-list';
 import nearestColor from 'nearest-color';
 import "./colorInformation.css";
 
 export const ColorInformation = (props) => {
-    const colors = colorNameList.reduce((o, { name, hex }) => Object.assign(o, { [name]: hex }), {});
+    const colors = colornames.reduce((o, { name, hex }) => Object.assign(o, { [name]: hex }), {});
     const nearest = nearestColor.from(colors);
 
     const color = props.color;

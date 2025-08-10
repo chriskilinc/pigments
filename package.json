@@ -3,16 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
-    "color-name-list": "^10.9.0",
-    "colorthief": "^2.4.0",
+    "color-name-list": "^11.24.0",
+    "colorthief": "^2.6.0",
     "nearest-color": "^0.4.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^3.3.1"
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

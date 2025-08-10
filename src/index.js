@@ -1,16 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+
+import App from './App'
+
 import './fonts/psychedelic.otf';
 import './fonts/J-airplane-swash-font.ttf';
+import './index.css';
 
-ReactDOM.render(
-  <React.StrictMode>
+
+
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+
+// 👇️ if you use TypeScript, add non-null (!) assertion operator
+root.render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
