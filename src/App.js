@@ -91,7 +91,7 @@ class App extends React.Component {
         <img
           id="img-preview"
           src={imagePreviewUrl}
-          alt='image preview'
+          alt='uploaded  preview'
           onLoad={this.onImgLoad}
         />
       );
@@ -113,10 +113,10 @@ class App extends React.Component {
       );
     }
 
-    let $infoText = null;
-    if (displayInfoText) {
-      $infoText = (<p>Press color swatch to copy hex code</p>);
-    }
+    // let $infoText = null;
+    // if (displayInfoText) {
+    //   $infoText = (<p>Press color swatch to copy hex code</p>);
+    // }
 
     let $wrongFileFormat = null;
     if (wrongFileFormat) {
@@ -147,12 +147,11 @@ class App extends React.Component {
           </section>
         </div>
 
-        {/* {$infoText} */}
         {$wrongFileFormat}
         <div className="links">
-          <a href="https://www.chriskilinc.com" target="_blank" rel="dofollow">chriskilinc</a>
+          <a href="https://www.chriskilinc.com" target="_blank" rel="noreferrer">chriskilinc</a>
           <span className="padding-around-s">•</span>
-          <a href="https://github.com/chriskilinc/pigments" target="_blank" rel="noopener nofollow">github</a>
+          <a href="https://github.com/chriskilinc/pigments" target="_blank" rel="noreferrer">github</a>
         </div>
       </div>
     );
